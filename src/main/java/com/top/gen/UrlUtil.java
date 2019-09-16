@@ -3,7 +3,7 @@ package com.top.gen;
 /**
  * @author zlm
  * @date 2019-09-15 18:33
- * @description  generate a url string randomly
+ * @description  generate a url randomly
  */
 
 public class UrlUtil {
@@ -17,9 +17,9 @@ public class UrlUtil {
     }
 
     /***
-     * 返回url
-     * @param lMin     最小长度
-     * @param lMax     最大长度
+     * return url
+     * @param lMin     Minimum length of a single url
+     * @param lMax     Maximum length of a single url
      * @return
      */
     public static String getUrl(int lMin, int lMax) {

@@ -1,0 +1,9 @@
+# server
+server:
+  port: 8828
+
+# spring
+spring:
+  application:
+    name: find-top-url
+

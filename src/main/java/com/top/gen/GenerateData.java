@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 public class GenerateData {
     public static void main(String[] args) {
         try {
+            //each url size is between 5B and 2014B
             CreateUrlFile.createRulFile(5,1024);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

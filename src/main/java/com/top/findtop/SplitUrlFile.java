@@ -12,14 +12,18 @@ import java.util.Set;
  */
 
 public class SplitUrlFile {
+    //100GB size of the original file
     private static String urlFilePath = "data/urlFile";
+    //the directory stores sub files
     private static String subFilePath = "data/subFiles";
     private static Map<Integer,Map<String,Long>> allUrlMap = new HashMap<>();
+
+    /**
+     * split original file
+     */
     public static void splitUrlFile()
     {
-        //读取文件
         File urlfile = new File(urlFilePath);
-        //写入文件
         try {
             BufferedReader reader = new BufferedReader(new FileReader(urlfile));
             String url = reader.readLine();
@@ -27,9 +31,8 @@ public class SplitUrlFile {
             Map<String,Long> modMap = null;
             while(url != null)
             {
-                //根据url字符串进行hash
+                //hash the url string
                 modNum = SDBMHash(url);
-                //判断modNum是否存在于allUrlMap中
                 if(allUrlMap.containsKey(modNum))
                 {
                     modMap = allUrlMap.get(modNum);
@@ -54,30 +57,28 @@ public class SplitUrlFile {
     }
     public static void createSubFile()
     {
-        //添加目录
         File subFile = new File(subFilePath);
         if(!subFile.exists())
         {
             subFile.mkdirs();
         }
-
         Set<Integer> modKeys = allUrlMap.keySet();
         FileOutputStream fos = null;
         Map<String,Long> modMap = null;
         Set<String> urlKeys = null;
         for(Integer modKey: modKeys)
         {
+            //create the sub files in turn
             subFile = new File(subFilePath+"/" + modKey);
             try {
-                //创建子文件
                 fos = new FileOutputStream(subFile,false);
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(fos));
-                //获取子文件写入的内容
+                //the content write into the sub files
                 modMap = allUrlMap.get(modKey);
                 urlKeys = modMap.keySet();
                 for(String urlKey:urlKeys)
                 {
-                    //往子文件写入url及对应数量，用“，”分割
+                    //write url and the number of occurrences, seperate with ","
                     out.print(urlKey + "," + modMap.get(urlKey) + "\n");
                 }
                 urlKeys.clear();
@@ -94,7 +95,11 @@ public class SplitUrlFile {
 
     }
 
-    //对url进行hash取模
+    /**
+     * hash url
+     * @param url
+     * @return
+     */
     public static int SDBMHash(String url)
     {
         return (url.hashCode()&  0x7FFFFFFF) % 1000;
