@@ -1,4 +1,4 @@
-package com.top;
+package com.top.gen;
 
 import com.top.gen.UrlUtil;
 import org.junit.Test;

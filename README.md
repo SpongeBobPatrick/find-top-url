@@ -5,8 +5,9 @@ find top 100 urls
 
     1. generate 100GB url file randomly
     2. split 100GB url file into multiple sub files by hash function
-    3. iterate sub files in turn and build a 100 size minHeap
-    4. output the top 100 urls and their occurrences
+    3. iterate sub files in turn and merge the occurrences of identical urls in sub files
+    4. iterate sub files in turn and build a 100 size minHeap
+    5. output the top 100 urls and their occurrences
 
 二、Running steps
 
@@ -19,6 +20,9 @@ find top 100 urls
             java -jar -Xmx1g -Xms1g find-top-rul-1.0-SNAPSHOT.jar >find.log 2>&1 &
     3. generate 100GB url file by controller API
         http://localhost:8828/topUrl/createFile
+        Test class call： 
     4. get top 100 urls and their occurrences by controller API
         http://localhost:8828/topUrl/fintTopUrl
+        
+
     

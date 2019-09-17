@@ -34,6 +34,8 @@ public class TopUrlController {
         long startTime = System.currentTimeMillis();
         //split url files into multiple sub files
         SplitUrlFile.splitUrlFile();
+        //merge the occurrences of identical urls in sub files
+        SplitUrlFile.mergeSubFile();
         //get top 100 urls and their occurrences using minHeap
         GetTopUrl.getTopUrl(100);
         long endTime = System.currentTimeMillis();
